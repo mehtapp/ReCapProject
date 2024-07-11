@@ -62,6 +62,12 @@ namespace DataAccess.Concrete.InMemory
         {
             var updatedCar = _cars.SingleOrDefault(c => c.Id == car.Id);
             int i = _cars.IndexOf(updatedCar);
+            updatedCar.Id = car.Id;
+            updatedCar.BrandId = car.BrandId;
+            updatedCar.ColorId = car.ColorId;
+            updatedCar.DailyPrice = car.DailyPrice;
+            updatedCar.Description = car.Description;
+            updatedCar.ModelYear = car.ModelYear;
             _cars[i] = updatedCar;
         }
     }

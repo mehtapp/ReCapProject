@@ -31,6 +31,7 @@ Console.WriteLine("************* Şimdi Space'le ve senin eklediğin Aracı bir 
 Console.ReadKey();
 Car car = carManager.GetAllCars().Last<Car>();
 car.Description = "BMW";
+
 carManager.UpdateCar(car);
 
 

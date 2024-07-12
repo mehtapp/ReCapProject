@@ -16,7 +16,7 @@ namespace Business.Abstract
         Car GetCarById(int id);
         List<Car> GetCars();
 
-        List<Car> GetCarsByCategoryId(int id);
+        List<Car> GetCarsByBrandId(int id);
         List<Car> GetCarsByColourId(int id);
         
 

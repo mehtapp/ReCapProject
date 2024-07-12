@@ -19,7 +19,15 @@ namespace Business.Concrete
         }
         public void AddCar(Car car)
         {
-            _carDal.Add(car);
+            if (car.Description.Length >= 2 && car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Araç bilgilerini eksik veya hatalı girdiniz.");
+            }
+            
         }
 
         public void DeleteCar(Car car)
@@ -52,5 +60,7 @@ namespace Business.Concrete
         {
             return _carDal.GetAll(c => c.ColorId == id);
         }
+
+
     }
 }

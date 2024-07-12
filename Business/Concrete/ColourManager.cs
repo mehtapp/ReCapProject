@@ -29,7 +29,7 @@ namespace Business.Concrete
 
         public Colour GetColourById(int id)
         {
-            return _colourDal.GetById(c => c.Id == id);
+            return _colourDal.Get(c => c.Id == id);
         }
 
         public void RemoveColour(Colour colour)

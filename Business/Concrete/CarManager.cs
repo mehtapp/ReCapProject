@@ -17,7 +17,7 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-        public void  AddCar(Car car)
+        public void AddCar(Car car)
         {
             _carDal.Add(car);
         }
@@ -43,14 +43,14 @@ namespace Business.Concrete
             //_carDal.Update(car);
         }
 
-        public List<Car> GetCarsByCategoryId(int id)
+        public List<Car> GetCarsByBrandId(int id)
         {
-            throw new NotImplementedException();
+            return _carDal.GetAll(c => c.BrandId == id);
         }
 
         public List<Car> GetCarsByColourId(int id)
         {
-            throw new NotImplementedException();
+            return _carDal.GetAll(c => c.ColorId == id);
         }
     }
 }

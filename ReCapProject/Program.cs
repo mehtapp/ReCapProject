@@ -16,15 +16,15 @@ Console.WriteLine("Hello");
 ColourManager colourManager = new ColourManager(new EfColourDal());
 Colour newColor = new Colour {Id = 1 ,Name = "Bej" };
 
-Colour color = colourManager.GetColourById(2);
-Console.WriteLine(color.Id);
-Console.WriteLine(color.Name);
+//Colour color = colourManager.GetColourById(2);
+//Console.WriteLine(color.Id);
+//Console.WriteLine(color.Name);
 
-//foreach(var color in )
-//{
-//    Console.WriteLine(color.Id);
-//    Console.WriteLine(color.Name);
-//}
+foreach(var color in colourManager.GetColors())
+{
+    Console.WriteLine(color.Id);
+    Console.WriteLine(color.Name);
+}
 
 //ICarService carManager = new CarManager(new InMemoryCarDal());
 

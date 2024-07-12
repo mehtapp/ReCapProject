@@ -14,48 +14,48 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public void Add(Colour entity)
         {
-            using (RentACarContext rentACar = new RentACarContext())
+            using (RentACarContext context = new RentACarContext())
             {
 
 
-                var addedEntity = rentACar.Entry(entity);
+                var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
-                rentACar.SaveChanges();
+                context.SaveChanges();
             }
         }
 
         public void Delete(Colour entity)
         {
-            using (RentACarContext rentACar = new RentACarContext())
+            using (RentACarContext context = new RentACarContext())
             {
-                var deletedEntity = rentACar.Entry(entity);
+                var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
-                rentACar.SaveChanges();
+                context.SaveChanges();
             }
         }
         public void Update(Colour entity)
         {
-            using (RentACarContext rentACar = new RentACarContext())
+            using (RentACarContext context = new RentACarContext())
             {
-                var updatedEntity = rentACar.Entry(entity);
+                var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
-                rentACar.SaveChanges();
+                context.SaveChanges();
             }
         }
         public List<Colour> GetAll(Expression<Func<Colour, bool>> filter = null)
         {
-            using (RentACarContext rentACar = new RentACarContext())
+            using (RentACarContext context = new RentACarContext())
             {
-                List<Colour> colors = filter == null ? rentACar.Colours.ToList() : rentACar.Colours.Where(filter).ToList();
-                return colors;
+                return filter == null ? context.Set<Colour>().ToList() : context.Set<Colour>().Where(filter).ToList();
+                //return colors;
             }
         }
 
-        public Colour GetById(Expression<Func<Colour, bool>> filter)
+        public Colour Get(Expression<Func<Colour, bool>> filter)
         {
-            using (RentACarContext rentACar = new RentACarContext())
+            using (RentACarContext context = new RentACarContext())
             {
-                return rentACar.Colours.Where(filter).First();
+                return context.Colours.Where(filter).First();
             }
         }
 

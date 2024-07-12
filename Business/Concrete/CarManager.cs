@@ -34,7 +34,8 @@ namespace Business.Concrete
 
         public Car GetCarById(int id)
         {
-            return _carDal.GetByID(id);
+            //return _carDal.GetByID(id)
+            return new Car();
         }
 
         public void UpdateCar(Car car)

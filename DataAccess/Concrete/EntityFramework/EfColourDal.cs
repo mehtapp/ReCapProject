@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    internal class EfColourDal : IColourDal
+    public class EfColourDal : IColourDal
     {
         public void Add(Colour entity)
         {
-            throw new NotImplementedException();
+            using (RentACarContext rentACar = new RentACarContext())
+            {
+                rentACar.Entry(entity);
+                rentACar.SaveChanges();
+            }
         }
 
         public void Delete(Colour entity)
@@ -26,13 +30,17 @@ namespace DataAccess.Concrete.EntityFramework
         }
         public List<Colour> GetAll(Expression<Func<Colour, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            using (RentACarContext rentACar = new RentACarContext())
+            {
+                List<Colour> colors = filter == null ? rentACar.Colours.ToList() : rentACar.Colours.Where(filter).ToList();
+                return colors;
+            }
         }
 
         public Colour GetById(Expression<Func<Colour, bool>> filter)
         {
             throw new NotImplementedException();
         }
-      
+
     }
 }

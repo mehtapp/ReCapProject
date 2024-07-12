@@ -4,12 +4,23 @@
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entity.Concrete;
 using System.Drawing;
 
 
 Console.WriteLine("Hello");
+
+
+ColourManager colourManager = new ColourManager(new EfColourDal());
+Colour newColor = new Colour { Id = 1, Name = "Kırmızı" };
+colourManager.AddColour(newColor);
+foreach(var item in colourManager.GetColors())
+{
+
+}
+
 //ICarService carManager = new CarManager(new InMemoryCarDal());
 
 //Console.WriteLine("********** Mevcut Kiralık Araç Listesi ************");

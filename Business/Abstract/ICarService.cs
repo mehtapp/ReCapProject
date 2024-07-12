@@ -12,9 +12,12 @@ namespace Business.Abstract
         void AddCar(Car car);
         void UpdateCar(Car car);
         void DeleteCar(Car car );
+        
         Car GetCarById(int id);
-        List<Car> GetAllCars();
+        List<Car> GetCars();
 
+        List<Car> GetCarsByCategoryId(int id);
+        List<Car> GetCarsByColourId(int id);
         
 
     }

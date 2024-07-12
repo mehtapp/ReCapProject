@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entity.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,18 +16,31 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (RentACarContext rentACar = new RentACarContext())
             {
-                rentACar.Entry(entity);
+
+
+                var addedEntity = rentACar.Entry(entity);
+                addedEntity.State = EntityState.Added;
                 rentACar.SaveChanges();
             }
         }
 
         public void Delete(Colour entity)
         {
-            throw new NotImplementedException();
+            using (RentACarContext rentACar = new RentACarContext())
+            {
+                var deletedEntity = rentACar.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                rentACar.SaveChanges();
+            }
         }
         public void Update(Colour entity)
         {
-            throw new NotImplementedException();
+            using (RentACarContext rentACar = new RentACarContext())
+            {
+                var updatedEntity = rentACar.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                rentACar.SaveChanges();
+            }
         }
         public List<Colour> GetAll(Expression<Func<Colour, bool>> filter = null)
         {
@@ -39,7 +53,10 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Colour GetById(Expression<Func<Colour, bool>> filter)
         {
-            throw new NotImplementedException();
+            using (RentACarContext rentACar = new RentACarContext())
+            {
+                return rentACar.Colours.Where(filter).First();
+            }
         }
 
     }

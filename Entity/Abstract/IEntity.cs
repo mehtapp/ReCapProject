@@ -1,4 +1,4 @@
-﻿namespace Entity.Abstract
+﻿namespace Entities.Abstract
 {
     public interface IEntity
     {

@@ -32,7 +32,7 @@ namespace Business.Concrete
             return _colourDal.Get(c => c.Id == id);
         }
 
-        public void RemoveColour(Colour colour)
+        public void DeleteColour(Colour colour)
         {
             _colourDal.Delete(colour);
         }

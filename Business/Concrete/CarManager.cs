@@ -27,7 +27,7 @@ namespace Business.Concrete
             {
                 Console.WriteLine("Araç bilgilerini eksik veya hatalı girdiniz.");
             }
-            
+
         }
 
         public void DeleteCar(Car car)
@@ -42,13 +42,13 @@ namespace Business.Concrete
 
         public Car GetCarById(int id)
         {
-            //return _carDal.GetByID(id)
-            return new Car();
+            return _carDal.Get(c => c.Id == id);
+            //return new Car();
         }
 
         public void UpdateCar(Car car)
         {
-            //_carDal.Update(car);
+            _carDal.Update(car);
         }
 
         public List<Car> GetCarsByBrandId(int id)

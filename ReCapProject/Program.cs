@@ -10,18 +10,86 @@ using Entities.Concrete;
 using System.Drawing;
 
 
-Console.WriteLine("************  Kiralanabilecek araç listesi **********************");
-CarManager carManager = new CarManager(new EfCarDal());
-foreach (var car in carManager.GetCars())
-{
-    Console.WriteLine("Araç Id " + car.Id);
-    Console.WriteLine("Brand Id " + car.BrandId);
-    Console.WriteLine("Color Id " + car.ColorId);
-    Console.WriteLine("Açıklama " + car.Description);
-    Console.WriteLine("Model Yılı " + car.ModelYear.Year);
-    Console.WriteLine("Günlük Kira Bedeli " + car.DailyPrice);
+Console.WriteLine("************  Colour Testing **********************");
 
+//Color Listing
+ColourManager colourManager = new ColourManager(new EfColourDal());
+Console.WriteLine("Renkler Tablosu Listesi");
+CallColours(colourManager);
+
+//Color  deleting + listing
+Console.WriteLine("Renkler listesi son elemanını silelim. Ve iki listeyi kıyaslayalım.");
+colourManager.DeleteColour(colourManager.GetColors().Last());
+Space();
+Console.WriteLine("Yeni Liste");
+CallColours(colourManager);
+
+//Color Adding
+Console.WriteLine("Yeni bir renk kaydı ekliyoruz.");
+Space();
+colourManager.AddColour(new Colour { Name = "Pembe" });
+CallColours(colourManager);
+
+
+//Getting a colour with its Id
+Space();
+Console.WriteLine("Son index'teki veriyi okuyorum.");
+colourManager.GetColourById(colourManager.GetColors().Last().Id);
+Console.WriteLine(colourManager.GetColourById(colourManager.GetColors().Last().Id));
+
+Space();
+Console.WriteLine("İlk İndexteki rengi güncelliyorum Listede olmayan bir renk yazarmısın.");
+string name =  Console.ReadLine().Trim();
+Colour colour = new Colour {Id = colourManager.GetColors().First().Id,  Name = name };
+Console.WriteLine();
+colourManager.UpdateColour(colour);
+CallColours(colourManager);
+
+
+
+Space();
+Console.WriteLine("BRAND");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static void CallColours(ColourManager colourManager)
+{
+    foreach (var color in colourManager.GetColors())
+    {
+        Console.WriteLine("{0} Id Numarına Sahip Renk : {1}", color.Id, color.Name);
+    }
 }
 
-
-
+static void Space()
+{
+    Console.WriteLine();
+}

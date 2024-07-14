@@ -12,11 +12,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfBrandDal : IBrandDal
     {
-        private readonly IBrandDal _brandDal;
-        public EfBrandDal(IBrandDal brandDal)
-        {
-            _brandDal = brandDal;
-        }
         public void Add(Brand entity)
         {
             using (RentACarContext context = new RentACarContext())

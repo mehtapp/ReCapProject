@@ -3,6 +3,8 @@
 
 using Business.Abstract;
 using Business.Concrete;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -16,7 +18,7 @@ using System.Net.Http.Headers;
 
 
 //Color Listing
-//TestingForColours();
+TestingForColours();
 
 //Brand Testing
 //TestingForBrands();
@@ -35,12 +37,23 @@ static void Space()
 
 static void CallColours(ColourManager colourManager)
 {
-    foreach (var color in colourManager.GetColors())
+    var result = colourManager.GetColors();
+    if (result.Data == null)
     {
-        Console.WriteLine("{0} Id Numarına Sahip Renk : {1}", color.Id, color.Name);
+        Console.WriteLine(result.Success + " " + result.Message);
+        
     }
-}
+    else
+    {
+        foreach (var color in colourManager.GetColors().Data)
+        {
+            Console.WriteLine("{0} Id Numarına Sahip Renk : {1}", color.Id, color.Name);
+        }
 
+    }
+
+}
+Console.ReadKey();
 static void CallBrands(BrandManager brandManager)
 {
     foreach (var brand in brandManager.GetBrands())
@@ -67,18 +80,24 @@ static void TestingForColours()
     ColourManager colourManager = new ColourManager(new EfColourDal());
     Console.WriteLine("Renkler Tablosu Listesi");
     CallColours(colourManager);
-
+    Console.ReadKey();
     Space();
     //Color Adding
     Console.WriteLine("Beyaz rengini ekliyoruz.");
-    colourManager.AddColour(new Colour { Name = "Mavi" });
+    IResult result = colourManager.AddColour(new Colour { Name = "Mavi" });
+    Console.WriteLine(result.Success + " " + result.Message);
+
+
+
+    Console.ReadKey();
+
     CallColours(colourManager);
 
     //update Color
     Space();
     Console.WriteLine("Son İndexteki rengi güncelliyorum Listede olmayan bir renk yazarmısın.");
     string name = Console.ReadLine().Trim();
-    Colour colour = new Colour { Id = colourManager.GetColors().Last().Id, Name = name };
+    Colour colour = new Colour { Id = colourManager.GetColors().Data.Last().Id, Name = name };
     Console.WriteLine();
     colourManager.UpdateColour(colour);
     Console.WriteLine("Liste Güncel");
@@ -88,7 +107,7 @@ static void TestingForColours()
     Space();
     //Color  deleting + listing
     Console.WriteLine("Renkler listesi son elemanını silelim. Ve iki listeyi kıyaslayalım. Liste orjinal haline dönmüş olmalı");
-    colourManager.DeleteColour(colourManager.GetColors().Last());
+    colourManager.DeleteColour(colourManager.GetColors().Data.Last());
     Space();
     Console.WriteLine("Yeni Liste");
     CallColours(colourManager);
@@ -96,7 +115,7 @@ static void TestingForColours()
     //Getting a colour with its Id
     Space();
     Console.WriteLine("Son index'teki veriyi okuyorum. (GetColourByıd metodu ile)");
-    int id = colourManager.GetColors().Last().Id;
+    int id = colourManager.GetColors().Data.Last().Id;
     Colour lastColour = colourManager.GetColourById(id);
     Console.WriteLine(lastColour.Id + " " + lastColour.Name);
 
@@ -108,7 +127,7 @@ static void TestingForBrands()
 
     Console.WriteLine("************************* Brand Testing ************************************");
     Space();
-  
+
     BrandManager brandManager = new BrandManager(new EfBrandDal());
     Console.WriteLine("Brand listesi");
     CallBrands(brandManager);
@@ -169,7 +188,7 @@ static void TestingForCars()
     {
         BrandId = brandManager.GetBrands().First().Id,
         Description = "Araç Description bla bla",
-        ColorId = colourManager.GetColors().First().Id,
+        ColorId = colourManager.GetColors().Data.First().Id,
         ModelYear = new DateTime(year, 01, 01),
         DailyPrice = 3900
 
@@ -197,5 +216,5 @@ static void TestingForCars()
     Console.WriteLine("Veritabanına son elenen araç siliniyor.");
     carManager.DeleteCar(carManager.GetCars().Last());
     CallCarsWithDto(carManager);
-    
+
 }

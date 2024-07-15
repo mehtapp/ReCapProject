@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,7 +19,7 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-        public void AddCar(Car car)
+        public IResult AddCar(Car car)
         {
             if (car.Description.Length >= 2 && car.DailyPrice > 0)
             {
@@ -31,38 +32,38 @@ namespace Business.Concrete
 
         }
 
-        public void DeleteCar(Car car)
+        public IResult DeleteCar(Car car)
         {
             _carDal.Delete(car);
         }
 
-        public List<Car> GetCars()
+        public IDataResult<List<Car>> GetCars()
         {
             return _carDal.GetAll();
         }
 
-        public Car GetCarById(int id)
+        public IDataResult<Car> GetCarById(int id)
         {
             return _carDal.Get(c => c.Id == id);
             //return new Car();
         }
 
-        public void UpdateCar(Car car)
+        public IResult UpdateCar(Car car)
         {
             _carDal.Update(car);
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
             return _carDal.GetAll(c => c.BrandId == id);
         }
 
-        public List<Car> GetCarsByColourId(int id)
+        public IDataResult<List<Car>> GetCarsByColourId(int id)
         {
             return _carDal.GetAll(c => c.ColorId == id);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return _carDal.GetCarDetails();
         }

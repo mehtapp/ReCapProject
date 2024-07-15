@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Abstract;
+using Core.Utilities.Results;
+using Business.Constants;
 
 namespace Business.Concrete
 {
@@ -19,29 +21,40 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public void AddBrand(Brand brand)
+        public IResult AddBrand(Brand brand)
         {
+            if (brand.Name.Count() < 2)
+            {
+                return new ErrorResult(Messages.ErrorForBrandAdded);
+            }
             _brandDal.Add(brand);
+            return new SuccessResult(Messages.Added);
         }
 
-        public void DeleteBrand(Brand brand)
+        public IResult DeleteBrand(Brand brand)
         {
             _brandDal.Delete(brand);
+            return new SuccessResult(Messages.Deleted);
         }
 
-        public Brand GetBrandById(int id)
+        public IDataResult<Brand> GetBrandById(int id)
         {
-            return _brandDal.Get(b => b.Id == id);
+            if (_brandDal.Get(b => b.Id == id) == null)
+            {
+                return new ErrorDataResult<Brand>(Messages.DefaultError);
+            }
+            return new SuccessDataResult<Brand>();
         }
 
-        public List<Brand> GetBrands()
+        public IDataResult<List<Brand>> GetBrands()
         {
-            return _brandDal.GetAll(); 
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll() , Messages.Listed );
         }
 
-        public void UpdateBrand(Brand brand)
+        public IResult UpdateBrand(Brand brand)
         {
             _brandDal.Update(brand);
+            return new SuccessResult(Messages.Updated);
         }
     }
 }

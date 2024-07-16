@@ -18,13 +18,14 @@ using System.Net.Http.Headers;
 
 
 //Color Listing
-TestingForColours();
+//TestingForColours();
+
 
 //Brand Testing
 //TestingForBrands();
 
 //Car testing
-//TestingForCars();
+TestingForCars();
 
 
 
@@ -66,8 +67,12 @@ static void CallCarsWithDto(CarManager carManager)
 {
     foreach (var car in carManager.GetCarDetails().Data)
     {
-        Console.WriteLine("{0} : ıd nolu {1} \n{2} : markalı \n{3} : renge sahip \n" +
-            "aracın günlük ücreti : {4}'tür", car.CarId, car.Description, car.BrandName, car.ColourName, car.DailyPrice);
+        Console.WriteLine(
+            "Id     :  {0}\n" +
+            "Ad     :  {1}\n" +
+            "Marka  :  {2}\n" +
+            "Renk   :  {3}\n" +
+            "Günlük :  {4}TL", car.CarId, car.Description, car.BrandName, car.ColourName, car.DailyPrice);
         Console.WriteLine();
     }
 }
@@ -80,16 +85,16 @@ static void TestingForColours()
     ColourManager colourManager = new ColourManager(new EfColourDal());
     Console.WriteLine("Renkler Tablosu Listesi");
     CallColours(colourManager);
-    Console.ReadKey();
+    //Console.ReadKey();
     Space();
     //Color Adding
     Console.WriteLine("Beyaz rengini ekliyoruz.");
-    IResult result = colourManager.AddColour(new Colour { Name = "Mavi" });
+    IResult result = colourManager.AddColour(new Colour { Name = "Beyaz" });
     Console.WriteLine(result.Success + " " + result.Message);
 
 
 
-    Console.ReadKey();
+    //Console.ReadKey();
 
     CallColours(colourManager);
 
@@ -107,9 +112,11 @@ static void TestingForColours()
     Space();
     //Color  deleting + listing
     Console.WriteLine("Renkler listesi son elemanını silelim. Ve iki listeyi kıyaslayalım. Liste orjinal haline dönmüş olmalı");
-    colourManager.DeleteColour(colourManager.GetColors().Data.Last());
-    Space();
-    Console.WriteLine("Yeni Liste");
+    Colour deletedColour = colourManager.GetColors().Data.Last();
+    IResult process =  colourManager.DeleteColour(deletedColour);
+    Console.WriteLine(process.Message);
+    Space(); 
+    Console.WriteLine("Yeni Listegri");
     CallColours(colourManager);
 
     //Getting a colour with its Id
@@ -176,7 +183,7 @@ static void TestingForCars()
     CallCarsWithDto(carManager);
     Space();
 
-    Console.WriteLine("Car Ekleme");
+    Console.WriteLine("***** Araç Ekleme  ******");
     //brand Id'ye var olan ilk aracın brandIdsini attım.Rastgele bir sayı versem sistemde olmayan bir
     //bir  ıd olacaktı. 
     BrandManager brandManager = new BrandManager(new EfBrandDal());
@@ -187,7 +194,7 @@ static void TestingForCars()
     carManager.AddCar(new Car
     {
         BrandId = brandManager.GetBrands().Data.First().Id,
-        Description = "Araç Description bla bla",
+        Description = "Senin eklediğin araç",
         ColorId = colourManager.GetColors().Data.First().Id,
         ModelYear = new DateTime(year, 01, 01),
         DailyPrice = 3900
@@ -197,7 +204,8 @@ static void TestingForCars()
 
     Space();
     //updating + listing
-    Console.WriteLine("Rastgele eklediğim aracın descriptionını değiştir. ");
+    Console.WriteLine("**** Rastgele eklediğim aracın descriptionını değiştir.  ***** ");
+
     string carName = Console.ReadLine().Trim();
     Car UpdatedCar = carManager.GetCars().Data.Last();
     carManager.UpdateCar(new Car
@@ -209,11 +217,16 @@ static void TestingForCars()
         DailyPrice = UpdatedCar.DailyPrice,
         ModelYear = UpdatedCar.ModelYear
     });
-    CallCarsWithDto(carManager);
+    Car selectedcar = carManager.GetCarById(UpdatedCar.Id).Data;
+    Console.WriteLine("Aracın bilgisini aşağıdaki ad ile değiştirdin.");
+    Console.WriteLine(
+            "Id     :  {0}\n" +
+            "Ad     :  {1}\n" ,
+             selectedcar.Id, selectedcar.Description);
 
     Space();
     //deleting + listing
-    Console.WriteLine("Veritabanına son elenen araç siliniyor.");
+    Console.WriteLine(" **** Veritabanına son eklenen araç siliniyor. ****");
     carManager.DeleteCar(carManager.GetCars().Data.Last());
     CallCarsWithDto(carManager);
 

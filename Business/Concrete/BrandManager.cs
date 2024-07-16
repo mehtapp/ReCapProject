@@ -43,7 +43,7 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<Brand>(Messages.DefaultError);
             }
-            return new SuccessDataResult<Brand>();
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == id));
         }
 
         public IDataResult<List<Brand>> GetBrands()

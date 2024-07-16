@@ -35,6 +35,7 @@ namespace Business.Concrete
 
         public IResult DeleteCar(Car car)
         {
+            _carDal.Delete(car);
             return new SuccessResult(Messages.Deleted);
         }
 
@@ -45,12 +46,14 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetCarById(int id)
         {
+
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
             //return new Car();
         }
 
         public IResult UpdateCar(Car car)
         {
+            _carDal.Update(car);
             return new SuccessResult(Messages.Updated);
         }
 

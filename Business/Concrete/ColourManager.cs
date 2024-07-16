@@ -49,13 +49,14 @@ namespace Business.Concrete
         public IResult DeleteColour(Colour colour)
         {
             _colourDal.Delete(colour);
-            if (_colourDal.Get(c => c.Id == colour.Id)== null)
+            var result = _colourDal.Get(c => c.Id == colour.Id);
+            if ( result == null)
             {
                 return new SuccessResult("Başarıyla silindi.");
             }
             return new ErrorResult(Messages.DefaultError);
-            
-            
+
+
         }
 
         public IResult UpdateColour(Colour colour)
@@ -64,6 +65,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Updated);
         }
 
-    
+
     }
 }

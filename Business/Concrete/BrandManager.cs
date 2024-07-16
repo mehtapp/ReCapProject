@@ -39,11 +39,12 @@ namespace Business.Concrete
 
         public IDataResult<Brand> GetBrandById(int id)
         {
-            if (_brandDal.Get(b => b.Id == id) == null)
+            var brand = _brandDal.Get(b => b.Id == id);
+            if (brand == null)
             {
                 return new ErrorDataResult<Brand>(Messages.DefaultError);
             }
-            return new SuccessDataResult<Brand>();
+            return new SuccessDataResult<Brand>(brand);
         }
 
         public IDataResult<List<Brand>> GetBrands()

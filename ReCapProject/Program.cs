@@ -56,7 +56,7 @@ static void CallColours(ColourManager colourManager)
 Console.ReadKey();
 static void CallBrands(BrandManager brandManager)
 {
-    foreach (var brand in brandManager.GetBrands())
+    foreach (var brand in brandManager.GetBrands().Data)
     {
         Console.WriteLine("{0} Id nolu brand  : {1} ", brand.Id, brand.Name);
 
@@ -64,7 +64,7 @@ static void CallBrands(BrandManager brandManager)
 }
 static void CallCarsWithDto(CarManager carManager)
 {
-    foreach (var car in carManager.GetCarDetails())
+    foreach (var car in carManager.GetCarDetails().Data)
     {
         Console.WriteLine("{0} : ıd nolu {1} \n{2} : markalı \n{3} : renge sahip \n" +
             "aracın günlük ücreti : {4}'tür", car.CarId, car.Description, car.BrandName, car.ColourName, car.DailyPrice);
@@ -116,7 +116,7 @@ static void TestingForColours()
     Space();
     Console.WriteLine("Son index'teki veriyi okuyorum. (GetColourByıd metodu ile)");
     int id = colourManager.GetColors().Data.Last().Id;
-    Colour lastColour = colourManager.GetColourById(id);
+    Colour lastColour = colourManager.GetColourById(id).Data;
     Console.WriteLine(lastColour.Id + " " + lastColour.Name);
 
 }
@@ -149,19 +149,19 @@ static void TestingForBrands()
     brandManager.UpdateBrand(
         new Brand
         {
-            Id = brandManager.GetBrands().Last().Id,
+            Id = brandManager.GetBrands().Data.Last().Id,
             Name = updateBrandName
         });
     CallBrands(brandManager);
 
     Space();
     Console.WriteLine("GetById ile sadece son kayıt getiriliyor");
-    Brand brand = brandManager.GetBrandById(brandManager.GetBrands().Last().Id);
-    Console.WriteLine("{0} Id nolu brand  : {1} : ", brand.Id, brand.Name);
+    IDataResult<Brand> brand = brandManager.GetBrandById(brandManager.GetBrands().Data.Last().Id);
+    Console.WriteLine("{0} Id nolu brand  : {1} : ", brand.Data.Id, brand.Data.Name);
 
     Space();
     Console.WriteLine("Son kayıt silindi listenin ilk ve son hali aynı olmalı.");
-    brandManager.DeleteBrand(brandManager.GetBrands().Last());
+    brandManager.DeleteBrand(brandManager.GetBrands().Data.Last());
     CallBrands(brandManager);
 }
 
@@ -186,7 +186,7 @@ static void TestingForCars()
     int year = rnd.Next(2000, 2024);
     carManager.AddCar(new Car
     {
-        BrandId = brandManager.GetBrands().First().Id,
+        BrandId = brandManager.GetBrands().Data.First().Id,
         Description = "Araç Description bla bla",
         ColorId = colourManager.GetColors().Data.First().Id,
         ModelYear = new DateTime(year, 01, 01),
@@ -199,7 +199,7 @@ static void TestingForCars()
     //updating + listing
     Console.WriteLine("Rastgele eklediğim aracın descriptionını değiştir. ");
     string carName = Console.ReadLine().Trim();
-    Car UpdatedCar = carManager.GetCars().Last();
+    Car UpdatedCar = carManager.GetCars().Data.Last();
     carManager.UpdateCar(new Car
     {
         Id = UpdatedCar.Id,
@@ -214,7 +214,7 @@ static void TestingForCars()
     Space();
     //deleting + listing
     Console.WriteLine("Veritabanına son elenen araç siliniyor.");
-    carManager.DeleteCar(carManager.GetCars().Last());
+    carManager.DeleteCar(carManager.GetCars().Data.Last());
     CallCarsWithDto(carManager);
 
 }

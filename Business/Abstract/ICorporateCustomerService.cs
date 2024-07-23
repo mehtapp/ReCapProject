@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,9 @@ namespace Business.Abstract
     public interface ICorporateCustomerService
     {
         IResult AddCorporateCustomer(User user, CorporateCustomer customer);
+
+        IResult DeleteCorporateCustomer(User user, CorporateCustomer customer);
+
+        IDataResult<List<CorporateCustomerWithUserInfoDto>> GetAllCorporateCustomer();
     }
 }

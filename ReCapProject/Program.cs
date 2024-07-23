@@ -9,6 +9,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.Identity.Client;
 using System.Diagnostics;
 using System.Drawing;
@@ -25,10 +26,11 @@ using System.Net.Http.Headers;
 //TestingForBrands();
 
 //Car testing
-TestingForCars();
+//TestingForCars();
 
 
-
+//AddCorporateCustomer Testing
+//TestingCorporateCustomer();
 
 static void Space()
 {
@@ -42,7 +44,7 @@ static void CallColours(ColourManager colourManager)
     if (result.Data == null)
     {
         Console.WriteLine(result.Success + " " + result.Message);
-        
+
     }
     else
     {
@@ -113,9 +115,9 @@ static void TestingForColours()
     //Color  deleting + listing
     Console.WriteLine("Renkler listesi son elemanını silelim. Ve iki listeyi kıyaslayalım. Liste orjinal haline dönmüş olmalı");
     Colour deletedColour = colourManager.GetColors().Data.Last();
-    IResult process =  colourManager.DeleteColour(deletedColour);
+    IResult process = colourManager.DeleteColour(deletedColour);
     Console.WriteLine(process.Message);
-    Space(); 
+    Space();
     Console.WriteLine("Yeni Listegri");
     CallColours(colourManager);
 
@@ -221,7 +223,7 @@ static void TestingForCars()
     Console.WriteLine("Aracın bilgisini aşağıdaki ad ile değiştirdin.");
     Console.WriteLine(
             "Id     :  {0}\n" +
-            "Ad     :  {1}\n" ,
+            "Ad     :  {1}\n",
              selectedcar.Id, selectedcar.Description);
 
     Space();
@@ -230,4 +232,35 @@ static void TestingForCars()
     carManager.DeleteCar(carManager.GetCars().Data.Last());
     CallCarsWithDto(carManager);
 
+}
+
+static void TestingCorporateCustomer()
+{
+    CorporateCustomerManager corporateCustomerManager = new CorporateCustomerManager(new EfCorporateCustomerDal());
+    //Adding
+    IResult result = corporateCustomerManager.AddCorporateCustomer(
+     new User { UserName = "kur123", Email = "kur@gmail.com", Password = "123" },
+     new CorporateCustomer { CompanyName = "Mehtap Butik" });
+    Console.WriteLine(result.Message);
+
+
+    //Deleting
+    IResult resultfordeleted = corporateCustomerManager.DeleteCorporateCustomer(
+        new User { UserId = 4, UserName = "kur123", Email = "kur@gmail.com", Password = "123" },
+        new CorporateCustomer { UserId = 4, CorporateId = 2, CompanyName = "Mehtap Butik" });
+
+    Console.WriteLine(resultfordeleted.Message);
+
+    //Listing
+    IDataResult<List<CorporateCustomerWithUserInfoDto>> resultofCorporateCustomer = corporateCustomerManager.GetAllCorporateCustomer();
+    Console.WriteLine("*********************     Kurumsal Müşteri Listesi    ******************************");
+    foreach (var corporateCustomer in resultofCorporateCustomer.Data)
+    {
+
+        Console.WriteLine("UserId     : " + corporateCustomer.UserId);
+        Console.WriteLine("CustomerId : " + corporateCustomer.CorporateCustomerId);
+        Console.WriteLine("UserName   : " + corporateCustomer.UserName);
+        Console.WriteLine("Şirket Adı : " + corporateCustomer.CorporateName);
+        Console.WriteLine("Mail       : " + corporateCustomer.Email);
+    }
 }

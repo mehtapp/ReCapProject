@@ -12,5 +12,6 @@ namespace DataAccess.Concrete.EntityFramework
     public class EfIndividualCustomerDal : EfEntityRepositoryBase<IndividualCustomer, RentACarContext> , IIndividualCustomerDal
     {
 
+
     }
 }

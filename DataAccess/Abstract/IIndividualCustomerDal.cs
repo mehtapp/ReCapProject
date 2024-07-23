@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
 {
     public interface IIndividualCustomerDal : IEntityRepository<IndividualCustomer>
     {
-        
+        void AddIndividualCustomer(User user, IndividualCustomer customer);
     }
 }

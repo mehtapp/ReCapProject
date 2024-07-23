@@ -11,7 +11,7 @@ namespace Business.Constants
         public static string Added = "Kayıt eklendi.";
         public static string Deleted = "Kayıt silindi.";
         public static string Updated = "Kayıt güncellendi.";
-        public static string Listed = "Kayıt listelendi.";
+        public static string Listed = "Kayıtlar listelendi.";
         public static string DefaultError = "İşlem gerçekleştirilirken bir hata ile karşılaşıldı." +
             " Daha sonra tekrar deneyiniz.";
         public static string ErrorForColourAdded = "Renk 2 karakterden kısa olamaz.";

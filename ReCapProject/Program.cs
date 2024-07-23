@@ -29,8 +29,12 @@ using System.Net.Http.Headers;
 //TestingForCars();
 
 
-//AddCorporateCustomer Testing
+//CorporateCustomer Testing
 //TestingCorporateCustomer();
+
+
+//IndividualCustomer Testing
+//TestingForIndividualCustomer();
 
 static void Space()
 {
@@ -263,4 +267,53 @@ static void TestingCorporateCustomer()
         Console.WriteLine("Şirket Adı : " + corporateCustomer.CorporateName);
         Console.WriteLine("Mail       : " + corporateCustomer.Email);
     }
+}
+
+static void TestingForIndividualCustomer()
+{
+    IndividualCustomerManager individualCustomerManager = new IndividualCustomerManager(new EfIndividualCustomerDal());
+    IResult success = individualCustomerManager.AddIndividualCustomer(new User
+    {
+        UserName = "bireysel",
+        Email = "bir@xyz.com",
+        Password = "343"
+    },
+    new IndividualCustomer
+    {
+        FirstName = "Ali",
+        LastName = "cAN",
+
+    });
+    Console.WriteLine(success.Message);
+
+    IResult ICustDeleteresult = individualCustomerManager.DeleteIndividualCustomer(new User
+    {
+        UserId = 9,
+        UserName = "bireysel",
+        Email = "bir@xyz.com",
+        Password = "343"
+    },
+    new IndividualCustomer
+    {
+        UserId = 9,
+        IndividualCustomerId = 1,
+        FirstName = "Ali",
+        LastName = "cAN",
+
+    }
+    );
+    Console.WriteLine(ICustDeleteresult.Message);
+
+    IDataResult<List<IndividualCustomerWithUserInfoDto>> IndividualCustomersListResult = individualCustomerManager.GetAllIndividualCustomer();
+    Console.WriteLine("*********************************** Bireysel Müşteri     *********************************************");
+    foreach (var individualCustomer in IndividualCustomersListResult.Data)
+    {
+        Console.WriteLine("UserId     : " + individualCustomer.UserId);
+        Console.WriteLine("CustomerId : " + individualCustomer.IndividualCustomerId);
+        Console.WriteLine("UserName   : " + individualCustomer.UserName);
+        Console.WriteLine("Ad         : " + individualCustomer.FirstName);
+        Console.WriteLine("Soyad      : " + individualCustomer.LastName);
+        Console.WriteLine("Mail       : " + individualCustomer.Email);
+    }
+    Console.WriteLine(IndividualCustomersListResult.Message);
 }

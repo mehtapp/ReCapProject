@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface ICorporateCustomerDal : IEntityRepository<CorporateCustomer>
     {
-        void AddCorporateCustomer(CorporateCustomer customer);
+        void AddCorporateCustomer(User user, CorporateCustomer customer);
     }
 }

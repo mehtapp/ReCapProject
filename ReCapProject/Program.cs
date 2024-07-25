@@ -330,7 +330,7 @@ static void TestingRental()
     IResult AddRentalResult = rentalManager.AddRentedCar(new Rental
     {
         CarId = 15,
-        RentDate = new DateTime(2024, 07, 24, 0, 0, 0),
+        RentDate = DateTime.Now,
         UserId = 3,
 
 
@@ -340,7 +340,7 @@ static void TestingRental()
     IResult deliveredCarBack = rentalManager.DeliverACarBack(new Rental
     {
         CarId = 1,
-        RentDate = DateTime.Now,
+        RentDate = DateTime.Now, //**
         UserId = 10,
         Id = 1,
 

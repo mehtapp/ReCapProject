@@ -16,7 +16,7 @@ namespace Entities.Concrete
         public int UserId { get; set; }
         public DateTime RentDate { get; set; }
        
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         //default//new DateTime(0001, 01, 01);
 
 

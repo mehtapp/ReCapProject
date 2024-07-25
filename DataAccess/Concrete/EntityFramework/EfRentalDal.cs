@@ -18,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (RentACarContext context = new RentACarContext())
             {
-                var query = context.Rentals.Where(r => r.Id == rental.Id && r.ReturnDate == new DateTime(0001,01,01,0,0,0));
+                var query = context.Rentals.Where(r => r.Id == rental.Id && r.ReturnDate == null);
                 if (query.Any()) 
                 {
                     rental.ReturnDate = DateTime.Now;

@@ -11,6 +11,7 @@ using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.Identity.Client;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Net.Http.Headers;
@@ -35,6 +36,10 @@ using System.Net.Http.Headers;
 
 //IndividualCustomer Testing
 //TestingForIndividualCustomer();
+
+//NOTLAR rentdate ve returndate bugun olarak ayarlanmıştır.
+//TestingRental();
+
 
 static void Space()
 {
@@ -316,4 +321,40 @@ static void TestingForIndividualCustomer()
         Console.WriteLine("Mail       : " + individualCustomer.Email);
     }
     Console.WriteLine(IndividualCustomersListResult.Message);
+}
+
+static void TestingRental()
+{
+    RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+    IResult AddRentalResult = rentalManager.AddRentedCar(new Rental
+    {
+        CarId = 15,
+        RentDate = new DateTime(2024, 07, 24, 0, 0, 0),
+        UserId = 3,
+
+
+    });
+    Console.WriteLine(AddRentalResult.Message);
+
+    IResult deliveredCarBack = rentalManager.DeliverACarBack(new Rental
+    {
+        CarId = 1,
+        RentDate = new DateTime(0001, 01, 01, 0, 0, 0),
+        UserId = 10,
+        Id = 1,
+
+    });
+    Console.WriteLine(deliveredCarBack.Message);
+
+    var result = rentalManager.GetAllRentedCars().Data;
+    Console.WriteLine("*");
+    foreach (var rentedcar in result)
+    {
+        Console.WriteLine(rentedcar.Id);
+        Console.WriteLine(rentedcar.CarId);
+        Console.WriteLine(rentedcar.UserId);
+        Console.WriteLine(rentedcar.RentDate);
+        Console.WriteLine(rentedcar.ReturnDate);
+    }
 }

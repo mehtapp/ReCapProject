@@ -13,11 +13,13 @@ namespace Business.Abstract
         IResult AddRentedCar(Rental rental); //Araç kiralama
         IResult DeleteRentedCar(Rental rental);
         IResult UpdateRentedCar(Rental rental);
-        IDataResult<List<Rental>> GetRentedCars(); // Eskiden kiralanmış ve teslim edilmiş, hala kiralık durumda olan araçları listeler.
-        IDataResult<Rental> GetRentedCarById(int rentalId);  // Kiralanmış teslim edilmiş, teslim edilmemiş araçları id ile çeker.
+        IDataResult<List<Rental>> GetAllRentedCars(); 
+        
+        
+        IDataResult<List<Rental>> GetRentedCarById(int CarId);  // Kiralanmış teslim edilmiş ya da teslim edilmemiş aracı id ile çeker.
 
-        IResult DeliverACar(); //Araç teslim etme. teslim ettiği günün tarihi ile kaydedilecek.
-        IDataResult<List<Rental>> GetAvailableCarForRent(); //Şuanda kiralanabilir durumda araçlar.
+        IResult DeliverACarBack(Rental rental); //Aracının müşteri tarafından teslim edilmesi. teslim ettiği günün tarihi ile kaydedilecek.
+        //IDataResult<List<Rental>> GetAvailableCarForRent(); //Şuanda kiralanabilir durumda araçlar.
         
 
     }

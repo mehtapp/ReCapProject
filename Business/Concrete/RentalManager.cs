@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,39 +13,66 @@ namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
-        public IResult AddRentedCar(Rental rental) 
+        private readonly IRentalDal _rentalDal;
+
+        public RentalManager(IRentalDal rentalDal)
         {
-            throw new NotImplementedException();
+            _rentalDal = rentalDal;
+        }
+
+        public IResult AddRentedCar(Rental rental)
+        {
+            //bu araç şuan kiralanabilir durumda mı?
+            //*************************************************
+            Rental alreadyRentedCar = _rentalDal.GetRentedCarById(rental.CarId).SingleOrDefault(r => r.ReturnDate == new DateTime(0001, 01, 01, 0, 0, 0));
+            if (alreadyRentedCar == null)
+            {
+                _rentalDal.Add(rental);
+                return new SuccessResult(Messages.Added);
+            }
+            return new ErrorResult(Messages.CantRentThisCar);
+
+
         }
 
         public IResult DeleteRentedCar(Rental rental)
         {
-            throw new NotImplementedException();
+            //Aracın silinmesi için kiralık verilmiş durumda olmaması lazım ?
+            _rentalDal.Delete(rental);
+            return new SuccessResult(Messages.Deleted);
         }
 
-        public IResult DeliverACar()
+        public IResult DeliverACarBack(Rental rental)   //aracı müşteri teslim ediyor 
         {
-            throw new NotImplementedException();
+            _rentalDal.DeliverACarBack(rental);
+            return new SuccessResult(Messages.DeliverCarBack);
         }
 
-        public IDataResult<List<Rental>> GetAvailableCarForRent()
+        //public IDataResult<List<Rental>> GetAvailableCarForRent() //Sadece kiralanabilecek araçlar listesi
+        //{
+        //    return new SuccessDataResult<List<Rental>>(_rentalDal.GetAvailableCarForRent(), Messages.Listed);
+
+        //}
+
+        public IDataResult<List<Rental>> GetRentedCarById(int CarId) //bir aracın geçmişteki kiralanma listesi ve şuan kiralanmışsa o bilgi
         {
-            throw new NotImplementedException();
+            _rentalDal.GetRentedCarById(CarId);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetRentedCarById(CarId), Messages.Listed);
         }
 
-        public IDataResult<Rental> GetRentedCarById(int rentalId)
+        public IDataResult<List<Rental>> GetAllRentedCars()  //
         {
-            throw new NotImplementedException();
-        }
-
-        public IDataResult<List<Rental>> GetRentedCars()
-        {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Rental>>
+                 (
+                _rentalDal.GetAll(),
+                Messages.Listed
+                );
         }
 
         public IResult UpdateRentedCar(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Update(rental);
+            return new SuccessResult(Messages.Updated);
         }
     }
 }

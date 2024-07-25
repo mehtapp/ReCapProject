@@ -16,6 +16,8 @@ namespace Business.Constants
             " Daha sonra tekrar deneyiniz.";
         public static string ErrorForColourAdded = "Renk 2 karakterden kısa olamaz.";
         public static string zeroListedData = "Listelenebilecek veri bulunmamaktadır.";
-        internal static string ErrorForBrandAdded ="Brand 2 karakterden küçük olamaz.";
+        public static string ErrorForBrandAdded ="Brand 2 karakterden küçük olamaz.";
+        public static string DeliverCarBack = "Araç teslim alındı. Tekrar kiralama yapılabilir durumda";
+        public static string CantRentThisCar = "Bu araç zaten kiralık durumdadır. Teslim edilmeden kiralama işlemi yapılamaz.";
     }
 }

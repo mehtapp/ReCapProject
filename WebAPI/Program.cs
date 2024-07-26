@@ -18,7 +18,11 @@ builder.Services.AddSingleton<IBrandDal, EfBrandDal>();
 builder.Services.AddSingleton<ICarService, CarManager>();
 builder.Services.AddSingleton<ICarDal, EfCarDal>();
 builder.Services.AddSingleton<IIndividualCustomerService , IndividualCustomerManager>();
-builder.Services.AddSingleton<IIndividualCustomerDal , EfIndividualCustomerDal>();
+builder.Services.AddSingleton<IIndividualCustomerDal, EfIndividualCustomerDal>();
+builder.Services.AddSingleton<ICorporateCustomerService, CorporateCustomerManager>();
+builder.Services.AddSingleton<ICorporateCustomerDal, EfCorporateCustomerDal>();
+builder.Services.AddSingleton<IRentalService , RentalManager>();
+builder.Services.AddSingleton<IRentalDal , EfRentalDal>();
 
 var app = builder.Build();
 

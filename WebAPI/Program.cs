@@ -17,6 +17,8 @@ builder.Services.AddSingleton<IBrandService, BrandManager>();
 builder.Services.AddSingleton<IBrandDal, EfBrandDal>();
 builder.Services.AddSingleton<ICarService, CarManager>();
 builder.Services.AddSingleton<ICarDal, EfCarDal>();
+builder.Services.AddSingleton<IIndividualCustomerService , IndividualCustomerManager>();
+builder.Services.AddSingleton<IIndividualCustomerDal , EfIndividualCustomerDal>();
 
 var app = builder.Build();
 

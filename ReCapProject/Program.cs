@@ -340,7 +340,7 @@ static void TestingRental()
     IResult deliveredCarBack = rentalManager.DeliverACarBack(new Rental
     {
         CarId = 1,
-        RentDate = DateTime.Now, //**
+        RentDate = DateTime.Now,
         UserId = 10,
         Id = 1,
 

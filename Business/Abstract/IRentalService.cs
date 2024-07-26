@@ -19,7 +19,7 @@ namespace Business.Abstract
         IDataResult<List<Rental>> GetRentedCarById(int CarId);  // Kiralanmış teslim edilmiş ya da teslim edilmemiş aracı id ile çeker.
 
         IResult DeliverACarBack(Rental rental); //Aracının müşteri tarafından teslim edilmesi. teslim ettiği günün tarihi ile kaydedilecek.
-        //IDataResult<List<Rental>> GetAvailableCarForRent(); //Şuanda kiralanabilir durumda araçlar.
+        //IDataResult<List<Rental>> GetAvailableCarForRent(); //Şuanda kiralanabilir durumdaki araçlar.
         
 
     }

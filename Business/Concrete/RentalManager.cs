@@ -24,7 +24,7 @@ namespace Business.Concrete
         {
             //bu araç şuan kiralanabilir durumda mı?
             //*************************************************
-            Rental alreadyRentedCar = _rentalDal.GetRentedCarById(rental.CarId).SingleOrDefault(r => r.ReturnDate == new DateTime(0001, 01, 01, 0, 0, 0));
+            Rental alreadyRentedCar = _rentalDal.GetRentedCarById(rental.CarId).SingleOrDefault(r => r.ReturnDate == null);
             if (alreadyRentedCar == null)
             {
                 _rentalDal.Add(rental);

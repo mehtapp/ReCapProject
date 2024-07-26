@@ -36,14 +36,19 @@ namespace Business.Concrete
             if (countOfColours == 0)
             {
                 //success ama veri yok
-                return new SuccessDataResult<List<Colour>>(Messages.zeroListedData);
+                return new SuccessDataResult<List<Colour>>(Messages.ZeroListedData);
             }
             return new SuccessDataResult<List<Colour>>(_colourDal.GetAll(), Messages.Listed);
         }
 
         public IDataResult<Colour> GetColourById(int id)
         {
-            return new SuccessDataResult<Colour>(_colourDal.Get(c => c.Id == id));
+            var result = _colourDal.Get(c => c.Id == id);
+            if (result != null) 
+            { 
+                return new SuccessDataResult<Colour>(result , Messages.GetDataById);
+            }
+            return new ErrorDataResult<Colour>(Messages.NoData);
         }
 
         public IResult DeleteColour(Colour colour)

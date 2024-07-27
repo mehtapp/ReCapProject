@@ -9,6 +9,7 @@ namespace Business.Constants
     public static class Messages
     {
         public static string Added = "Kayıt eklendi.";
+        public static string ValidationError = "Kayıt belirtilen kurallara uygun olmnadığı için işlem başarısız.";
         public static string Deleted = "Kayıt silindi.";
         public static string Updated = "Kayıt güncellendi.";
         public static string Listed = "Kayıtlar listelendi.";

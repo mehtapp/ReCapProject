@@ -1,10 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -20,14 +23,20 @@ namespace Business.Concrete
         {
             _colourDal = colourDal;
         }
+
+        //[Validate]
         public IResult AddColour(Colour colour)
         {
-            if (colour.Name.Length <= 2)
+            var validator = new ColourValidator();
+            FluentValidation.Results.ValidationResult validationResult = validator.Validate(colour);
+            if (validationResult.IsValid)
             {
-                return new ErrorResult(Messages.ErrorForColourAdded);
+                _colourDal.Add(colour);
+                return new SuccessResult(Messages.Added);
+
             }
-            _colourDal.Add(colour);
-            return new SuccessResult(Messages.Added);
+            return new ErrorResult(Messages.ErrorForColourAdded)*/;
+            //throw new ValidationException();
         }
 
         public IDataResult<List<Colour>> GetColors()
@@ -44,9 +53,9 @@ namespace Business.Concrete
         public IDataResult<Colour> GetColourById(int id)
         {
             var result = _colourDal.Get(c => c.Id == id);
-            if (result != null) 
-            { 
-                return new SuccessDataResult<Colour>(result , Messages.GetDataById);
+            if (result != null)
+            {
+                return new SuccessDataResult<Colour>(result, Messages.GetDataById);
             }
             return new ErrorDataResult<Colour>(Messages.NoData);
         }
@@ -55,7 +64,7 @@ namespace Business.Concrete
         {
             _colourDal.Delete(colour);
             var result = _colourDal.Get(c => c.Id == colour.Id);
-            if ( result == null)
+            if (result == null)
             {
                 return new SuccessResult("Başarıyla silindi.");
             }

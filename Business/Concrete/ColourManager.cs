@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -24,18 +26,15 @@ namespace Business.Concrete
             _colourDal = colourDal;
         }
 
-        //[Validate]
+        [ValidationAspect(typeof(ColourValidator))]
         public IResult AddColour(Colour colour)
         {
-            var validator = new ColourValidator();
-            FluentValidation.Results.ValidationResult validationResult = validator.Validate(colour);
-            if (validationResult.IsValid)
-            {
+           // ValidationTool.Validate(new ColourValidator() , colour);
                 _colourDal.Add(colour);
                 return new SuccessResult(Messages.Added);
 
-            }
-            return new ErrorResult(Messages.ErrorForColourAdded)*/;
+            
+            //return new ErrorResult(Messages.ErrorForColourAdded);
             //throw new ValidationException();
         }
 

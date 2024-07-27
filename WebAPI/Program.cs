@@ -1,5 +1,8 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
+using Business.DependencyResolvers.Autofac;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
@@ -11,13 +14,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 /* **************************************************  .net IoC Container ile yapýldý. Autofac 'e çekildi.   ****************************************** */
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 //builder.Services.AddSingleton<IColourService, ColourManager>();
 //builder.Services.AddSingleton<IColourDal, EfColourDal>();
 //builder.Services.AddSingleton<IBrandService, BrandManager>();
 //builder.Services.AddSingleton<IBrandDal, EfBrandDal>();
-//builder.Services.AddSingleton<ICarService, CarManager>();
+//builder.Services.AddSingleton<ICarSerCOLOvice, CarManager>();
 //builder.Services.AddSingleton<ICarDal, EfCarDal>();
 //builder.Services.AddSingleton<IIndividualCustomerService , IndividualCustomerManager>();
 //builder.Services.AddSingleton<IIndividualCustomerDal, EfIndividualCustomerDal>();
@@ -26,7 +29,13 @@ builder.Services.AddControllers();
 //builder.Services.AddSingleton<IRentalService , RentalManager>();
 //builder.Services.AddSingleton<IRentalDal , EfRentalDal>();
 
+//Artýk IoC Servici olarak WebAPI'de Autoc kullnacaðýmýzý belirttik.
 
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(container =>
+{
+    container.RegisterModule(new AutofacBusinessModel());
+});
 
 
 var app = builder.Build();

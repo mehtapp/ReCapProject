@@ -72,6 +72,7 @@ namespace Business.Concrete
 
         }
 
+        [ValidationAspect(typeof(ColourValidator))]
         public IResult UpdateColour(Colour colour)
         {
             _colourDal.Update(colour);

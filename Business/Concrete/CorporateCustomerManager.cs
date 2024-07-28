@@ -1,6 +1,8 @@
 ﻿using Azure.Core;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -22,8 +24,22 @@ namespace Business.Concrete
             _corporateCustomerDal = corporateCustomerDal;
         }
 
-        public IResult AddCorporateCustomer(User user, CorporateCustomer customer)
+
+        [ValidationAspect(typeof(UserValidator))]
+        [ValidationAspect(typeof(CorporateCustomerValidator))]
+        public IResult AddCorporateCustomer(User user,CorporateCustomer customer)
         {
+
+            //User user = new User
+            //{
+            //    UserName = customer.UserName,
+            //    Email = customer.Email,
+            //    Password = customer.Password
+            //};
+            //CorporateCustomer corporateCustomer = new CorporateCustomer
+            //{
+            //    CompanyName = customer.CorporateName
+            //};
             _corporateCustomerDal.AddCorporateCustomer(user, customer);
             return new SuccessResult(Messages.Added);
         }

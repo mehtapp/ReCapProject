@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,6 +23,9 @@ namespace Business.Concrete
             _individualDal = individualDal;
         }
 
+
+        [ValidationAspect(typeof(UserValidator))]
+        [ValidationAspect(typeof(IndividualCustomerValidator))]
         public IResult AddIndividualCustomer(User user, IndividualCustomer customer)
         {
             _individualDal.AddIndividualCustomer(user, customer);

@@ -248,6 +248,7 @@ static void TestingCorporateCustomer()
     CorporateCustomerManager corporateCustomerManager = new CorporateCustomerManager(new EfCorporateCustomerDal());
     //Adding
     IResult result = corporateCustomerManager.AddCorporateCustomer(
+     //new CorporateCustomerWithUserInfoDto { UserName = "kur123", Email = "kur@gmail.com", Password = "123", CorporateName = "Mehtap Butik" });
      new User { UserName = "kur123", Email = "kur@gmail.com", Password = "123" },
      new CorporateCustomer { CompanyName = "Mehtap Butik" });
     Console.WriteLine(result.Message);

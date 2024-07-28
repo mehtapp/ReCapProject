@@ -18,7 +18,7 @@ namespace Entities.Concrete
         // IUser ve ICustomer Propertyleri
 
         public int UserId { get; set; }
-
+        //public User CurrentUser { get; set; }      // 
 
     }
 }

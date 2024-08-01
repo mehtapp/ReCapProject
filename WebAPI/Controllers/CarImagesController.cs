@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,29 +11,46 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarImagesController : ControllerBase
     {
-        ICarImageService _iCarImageService;
+        ICarImageService _carImageService;
 
         public CarImagesController(ICarImageService iCarImageService)
         {
-            _iCarImageService = iCarImageService;
+            _carImageService = iCarImageService;
         }
 
         [HttpPost("Add")]
-        public IActionResult AddImage(CarImage carImage)
+        public IActionResult AddImage([FromForm] IFormFile file, [FromForm] CarImage carImage)
         {
-            var result = _iCarImageService.AddCarImage(carImage);
+            var result = _carImageService.AddCarImage(file, carImage);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
-           
+
+        }
+
+        [HttpPost("Multiadd")]
+        public IActionResult AddImages([FromForm] int CarId, [FromForm] params IFormFile[] files)
+        {
+
+            foreach (var file in files)
+            {
+                var result = _carImageService.AddCarImage(file, new CarImage { CarId = CarId });
+                if (!result.Success)
+                {
+                    return BadRequest(result);
+                }
+
+            }
+            return Ok(Messages.Added);
+
         }
 
         [HttpPost("Update")]
-        public IActionResult UpdateImage(CarImage carImage)
+        public IActionResult UpdateImage([FromForm] IFormFile file, [FromForm]CarImage carImage)
         {
-            var result = _iCarImageService.UpdateCarImage(carImage);
+            var result = _carImageService.UpdateCarImage(file, carImage);
             if (result.Success)
             {
                 return Ok(result);
@@ -40,21 +59,35 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Delete")]
-        public IActionResult DeleteImage(CarImage carImage)
+        public IActionResult DeleteImage([FromForm] params int[] CarImageIds)
         {
-            var result = _iCarImageService.DeleteCarImage(carImage);
-            if (result.Success)
+            foreach (var id in CarImageIds)
+            {
+                var result = _carImageService.DeleteCarImage(id);
+                if (!result.Success)
+                {
+                    return BadRequest(result);
+                }
+            }
+            return Ok(Messages.Deleted);
+        }  //carId de eklenebilirdi.
+
+        [HttpGet("GetByCarId")]
+        public IActionResult GetByCarId(int CarId)
+        {
+            var result = _carImageService.GetByCarId(CarId);
+            if (!result.Success)
             {
                 return Ok(result);
-
             }
             return BadRequest(result);
+            
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAllCars()
         {
-            var result = _iCarImageService.GetAllCarImage();
+            var result = _carImageService.GetAllCarImage();
             if (result.Success)
             {
                 return Ok(result);
@@ -66,7 +99,7 @@ namespace WebAPI.Controllers
         [HttpGet("GetById")]
         public IActionResult GetCarImagesById(int id)
         {
-            var result = _iCarImageService.GetCarImageById(id);
+            var result = _carImageService.GetCarImageById(id);
             if (result.Success)
             {
                 return Ok(result);

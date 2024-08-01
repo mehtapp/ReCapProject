@@ -21,6 +21,8 @@ namespace Business.Constants
         public static string ErrorForBrandAdded ="Brand 2 karakterden küçük olamaz.";
         public static string DeliverCarBack = "Araç teslim alındı. Tekrar kiralama yapılabilir durumda";
         public static string CantRentThisCar = "Bu araç zaten kiralık durumdadır. Teslim edilmeden kiralama işlemi yapılamaz.";
-        public static string GetDataById = "Verilen Id ye ait dataya başarıyla ulaşıldı."; 
+        public static string GetDataById = "Verilen Id ye ait dataya başarıyla ulaşıldı.";
+        internal static string CarImageLimitError ="Bir araç için maximum 5 görsel eklenebilir.";
+        internal static string DefaultImage;
     }
 }

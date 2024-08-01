@@ -24,6 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public DbSet<VipCustomer> VipCustomers { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
 
     }
 }

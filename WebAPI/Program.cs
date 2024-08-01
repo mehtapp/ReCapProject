@@ -29,7 +29,7 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddSingleton<IRentalService , RentalManager>();
 //builder.Services.AddSingleton<IRentalDal , EfRentalDal>();
 
-//Artýk IoC Servici olarak WebAPI'de Autoc kullnacaðýmýzý belirttik.
+//Artýk IoC Servici olarak WebAPI'de Autoc kullnacaðýmýzý belirttik*********************
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(container =>

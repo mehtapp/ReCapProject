@@ -30,9 +30,6 @@ namespace Business.Concrete
 
         public IResult AddCarImage(IFormFile file, CarImage carImage)
         {
-            //_fileHelper.Upload("")
-            //_carImageDal.Add(carImage);
-
             IResult result = BusinessRules.Run(CheckCountOfImageForACar(carImage.CarId));
             if (result != null)
             {
@@ -51,7 +48,9 @@ namespace Business.Concrete
 
         public IResult UpdateCarImage(IFormFile file, CarImage carImage)
         {
-            string newPath = _fileHelper.Update(file, carImage.ImagePath, PathConstant.ImagesPath);
+            //ImagePath postmanden almamak için
+            var currentCarImage = _carImageDal.Get(x => x.CarId == carImage.CarId && x.Id == carImage.Id);
+            string newPath = _fileHelper.Update(file, currentCarImage.ImagePath, PathConstant.ImagesPath);
             carImage.ImagePath = newPath;
             carImage.Date = DateTime.Now;
 
@@ -79,7 +78,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> GetCarImageById(int id)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(carImage => carImage.Id == id), Messages.GetDataById);
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(carImage => carImage.Id == id));
         }
         public IDataResult<List<CarImage>> GetByCarId(int id)
         {

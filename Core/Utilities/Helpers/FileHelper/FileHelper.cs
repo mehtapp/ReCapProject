@@ -39,18 +39,20 @@ namespace Core.Utilities.Helpers.FileHelpers
         }
         public void Delete(string filePath , string root)
         {
-            if (File.Exists(filePath))
+            string path = Path.Combine(root, filePath);
+            if (File.Exists(path))
             {   
-                string deletedImagePath = Path.Combine(root, filePath);
-                File.Delete(deletedImagePath);
+                
+                File.Delete(path);
             }
         }
 
         public string Update(IFormFile file, string filePath, string root)
         {
-            if (File.Exists(filePath))
+            
+            if (File.Exists(Path.Combine(root, filePath)))
             {
-                Delete(filePath , root);
+                Delete(filePath, root);
             }
             return Upload(file , root);
 

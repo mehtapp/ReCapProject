@@ -1,0 +1,1152 @@
+{
+	"info": {
+		"_postman_id": "8089c525-2d42-442f-85bb-581b06c8a378",
+		"name": "Recap Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19906230"
+	},
+	"item": [
+		{
+			"name": "Colour",
+			"item": [
+				{
+					"name": "GetColours",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/colours/getall",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"colours",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddColour",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/colours/Addcolour",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"colours",
+								"Addcolour"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetColourById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Colours/Getcolourbyid?id=25",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Colours",
+								"Getcolourbyid"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteColour",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 45,\r\n    \"name\": \"Beyaz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Colours/DeleteColour",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Colours",
+								"DeleteColour"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateColour",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 48,\r\n    \"name\": \"m\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/colours/Updatecolour",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"colours",
+								"Updatecolour"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "GetBrands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/Brands/getall",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Brands",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddBrand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Brands/Addbrand",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Brands",
+								"Addbrand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBrandById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/Brands/Getbrandbyid?id=5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Brands",
+								"Getbrandbyid"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBrand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 14,\r\n    \"name\": \"Renault\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Brands/Deletebrand",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Brands",
+								"Deletebrand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBrand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Şahin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Brands/Updatebrand",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Brands",
+								"Updatebrand"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Car",
+			"item": [
+				{
+					"name": "GetCars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/cars/getall",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"cars",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brandId\": 1,\r\n    \"colorId\": 25,\r\n    \"modelYear\": \"2024-01-01T00:00:00\",\r\n    \"dailyPrice\": 5500.00,\r\n    \"description\": \"Postmanden eklendi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/cars/Addcar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"cars",
+								"Addcar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCarById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/cars/Getcarbyid?id=24",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"cars",
+								"Getcarbyid"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 23,\r\n    \"brandId\": 1,\r\n    \"colorId\": 25,\r\n    \"modelYear\": \"2024-01-01T00:00:00\",\r\n    \"dailyPrice\": 5500.00,\r\n    \"description\": \"Postmanden eklendi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/cars/Deletecar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"cars",
+								"Deletecar"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"id\": 24,\r\n            \"brandId\": 1,\r\n            \"colorId\": 25,\r\n            \"modelYear\": \"2024-01-01T00:00:00\",\r\n            \"dailyPrice\": 5500.00,\r\n            \"description\": \"Postmanden eklendi ve güncellendi\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/cars/Updatecar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"cars",
+								"Updatecar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCarsByBrandId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/Cars/Getcarsbybrandid?id=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Cars",
+								"Getcarsbybrandid"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCarsByColourId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/Cars/Getcarsbycolourid?id=25",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Cars",
+								"Getcarsbycolourid"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCarDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/cars/Getcardetails",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"cars",
+								"Getcardetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IndividualCustomer",
+			"item": [
+				{
+					"name": "AddIndividualCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"firstName\": \"S\",\r\n            \"lastName\": \"D\",\r\n            \"userName\": \"ses124\",\r\n            \"email\": \"sezen@xyz.com\",\r\n            \"password\": \"s\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/IndividualCustomers/Addindividualcustomer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"IndividualCustomers",
+								"Addindividualcustomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteIndividualCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 16,\r\n    \"individualCustomerId\": 5,\r\n    \"firstName\": \"Burhan\",\r\n    \"lastName\": \"Öz\",\r\n    \"userName\": \"baha0134\",\r\n    \"email\": \"bahadır@xyz.com\",\r\n    \"password\": \"baha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/IndividualCustomers/Deleteindividualcustomer?id=4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"IndividualCustomers",
+								"Deleteindividualcustomer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllIndividualCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/IndividualCustomers/Getallindividualcustomer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"IndividualCustomers",
+								"Getallindividualcustomer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CorporateCustomer",
+			"item": [
+				{
+					"name": "GetAllCorporateCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/CorporateCustomers/Getallcorporatecustomer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CorporateCustomers",
+								"Getallcorporatecustomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCorporateCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"corporateName\": \"S\",\r\n    \"userName\": \"sf\",\r\n    \"email\": \"sefa@xyz.com\",\r\n    \"password\": \"fkg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/CorporateCustomers/Addcorporatecustomer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CorporateCustomers",
+								"Addcorporatecustomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCorporateCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 5,\r\n    \"corporateCustomerId\": 3,\r\n    \"corporateName\": \"Mehtap Butik\",\r\n    \"userName\": \"kur123\",\r\n    \"email\": \"kur@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/CorporateCustomers/Deletecorporatecustomer",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CorporateCustomers",
+								"Deletecorporatecustomer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rental",
+			"item": [
+				{
+					"name": "GetAllRentedCars",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Rentals/Getallrentedcars",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Rentals",
+								"Getallrentedcars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddRentedCar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\": 24,\r\n    \"userId\": 11,\r\n    \"rentDate\": \"2024-01-01T00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Rentals/Addrentedcar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Rentals",
+								"Addrentedcar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRentedCarById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/Rentals/Getrentedcarbyid?id=24",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Rentals",
+								"Getrentedcarbyid"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteRentedCar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"carId\": 24,\r\n    \"userId\": 11,\r\n    \"rentDate\": \"2024-01-01T00:00:00\",\r\n    \"returnDate\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Rentals/Deleterentedcar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Rentals",
+								"Deleterentedcar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRentedCar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\": 24,\r\n    \"userId\": 10,\r\n    \"rentDate\": \"2024-02-01T00:00:00\",\r\n    \"returnDate\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Rentals/Updaterentedcar",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Rentals",
+								"Updaterentedcar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeliverACarBack",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"carId\": 24,\r\n    \"userId\": 11,\r\n    \"rentDate\": \"0001-01-01T00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/Rentals/Deliveracarback",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"Rentals",
+								"Deliveracarback"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CarImages",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "CarId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/mehta/Desktop/bentley2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/CarImages/Add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CarImages",
+								"Add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MultiAdd",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "CarId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/C:/Users/mehta/Desktop/bentleyyy.jpg",
+										"/C:/Users/mehta/Desktop/betnley.jpg",
+										"/C:/Users/mehta/Desktop/photo-1486365227551-f3f90034a57c.jpeg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/CarImages/Multiadd",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CarImages",
+								"Multiadd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/mehta/Desktop/white-bentley-continental-gt-at-bombay-super-car-show-F098GF.jpg"
+								},
+								{
+									"key": "CarId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Id",
+									"value": "31",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/CarImages/Update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CarImages",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/CarImages/GetAll",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CarImages",
+								"GetAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "CarImageIds",
+									"value": "28",
+									"type": "text"
+								},
+								{
+									"key": "CarImageIds",
+									"value": "29",
+									"type": "text"
+								},
+								{
+									"key": "CarImageIds",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "CarImageIds",
+									"value": "23",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:7232/api/CarImages/Delete",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CarImages",
+								"Delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/CarImages/GetById?id=24",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CarImages",
+								"GetById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByCarId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7232/api/CarImages/GetByCarId?CarId=15",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7232",
+							"path": [
+								"api",
+								"CarImages",
+								"GetByCarId"
+							],
+							"query": [
+								{
+									"key": "CarId",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

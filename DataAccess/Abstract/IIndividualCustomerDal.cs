@@ -16,6 +16,7 @@ namespace DataAccess.Abstract
 
         void DeleteIndividualCustomer(User user, IndividualCustomer customer);
 
+        void UpdateIndividualCustomer(User user , IndividualCustomer customer);
         List<IndividualCustomerWithUserInfoDto> GetAllIndividualCustomer();
     }
 

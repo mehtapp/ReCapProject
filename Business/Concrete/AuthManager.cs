@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace Business.Concrete
 {
-    public interface IUserDal
+    public class AuthManager
     {
+
     }
 }

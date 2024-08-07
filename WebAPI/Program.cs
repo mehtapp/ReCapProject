@@ -38,6 +38,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
 });
 
 
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,7 +48,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+//angular adresimiz
+app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

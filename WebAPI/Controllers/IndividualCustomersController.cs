@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.DTOs;
@@ -19,7 +20,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Addindividualcustomer")]
-        public IActionResult AddIndividualCustomer(IndividualCustomerWithUserInfo customer)
+        public IActionResult AddIndividualCustomer(IndividualCustomerWithUserInfoDto customer)
         {
             User user = new User();
             IndividualCustomer individualCustomer = new IndividualCustomer();
@@ -49,7 +50,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Deleteindividualcustomer")]
-        public IActionResult DeleteIndividualCustomer(IndividualCustomerWithUserInfo customer)
+        public IActionResult DeleteIndividualCustomer(IndividualCustomerWithUserInfoDto customer)
         {
             User user = new User();
             IndividualCustomer individualCustomer = new IndividualCustomer();

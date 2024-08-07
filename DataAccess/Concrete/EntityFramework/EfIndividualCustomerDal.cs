@@ -26,7 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                         var addedUser = context.Entry(user);
                         addedUser.State = EntityState.Added;
                         context.SaveChanges();
-
+                  
                         customer.UserId = user.UserId;
 
                         var addedCustomer = context.Entry(customer);
@@ -93,6 +93,11 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
             
+        }
+
+        public void UpdateIndividualCustomer(User user, IndividualCustomer customer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Concrete.EntityFramework
 {
-    public interface IUserDal
+    internal class EfUserDal
     {
     }
 }

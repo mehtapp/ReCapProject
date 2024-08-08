@@ -24,17 +24,16 @@ namespace Business.Concrete
         }
 
 
-        [ValidationAspect(typeof(UserValidator))]
-        [ValidationAspect(typeof(IndividualCustomerValidator))]
-        public IResult AddIndividualCustomer(User user, IndividualCustomer customer)
+        //[ValidationAspect(typeof(UserValidator))]
+        //[ValidationAspect(typeof(IndividualCustomerValidator))]
+        public IDataResult<IndividualCustomer> AddIndividualCustomer(IndividualCustomer customer)
         {
-            _individualDal.AddIndividualCustomer(user, customer);
-            return new SuccessResult(Messages.Added);
+            return new SuccessDataResult<IndividualCustomer>(_individualDal.AddIndividualCustomer(customer),Messages.Added);
         }
 
-        public IResult DeleteIndividualCustomer(User user, IndividualCustomer customer)
+        public IResult DeleteIndividualCustomer(IndividualCustomer customer)
         {
-            _individualDal.DeleteIndividualCustomer(user, customer);
+            _individualDal.Delete(customer);
             return new SuccessResult(Messages.Deleted);
         }
 

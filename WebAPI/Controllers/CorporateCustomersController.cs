@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             user.UserName = customer.UserName;
             user.Email = customer.Email;
 
-            user.Password = customer.Password;
+            //user.Password = customer.Password;
             corporateCustomer.CompanyName = customer.CorporateName;
             var result = _corporateCustomerService.AddCorporateCustomer(user, corporateCustomer);
             if (result.Success)
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
             user.UserId = customer.UserId;
             corporateCustomer.UserId = customer.UserId;
             corporateCustomer.CorporateId = customer.CorporateCustomerId;
-            user.Password = customer.Password;
+            //user.Password = customer.Password;
             corporateCustomer.CompanyName = customer.CorporateName;
 
             var result = _corporateCustomerService.DeleteCorporateCustomer(user, corporateCustomer);

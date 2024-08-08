@@ -84,7 +84,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  CorporateName = c.CompanyName,
                                  UserName = u.UserName,
                                  Email = u.Email,
-                                 Password = u.Password
+                                 //Password = u.Password
                              };
                 
                 return result.ToList();

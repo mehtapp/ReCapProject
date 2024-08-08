@@ -24,5 +24,9 @@ namespace Business.Constants
         public static string GetDataById = "Verilen Id ye ait dataya başarıyla ulaşıldı.";
         internal static string CarImageLimitError ="Bir araç için maximum 5 görsel eklenebilir.";
         internal static string DefaultImage;
+        internal static string RegisterSuccessForIndividualCustomer;
+        internal static string UserAlreadyExist = "Böyle bir kullanıcı zaten var.";
+        internal static string UserNotExist ="Böyle bir kullanıcı yok";
+        public static string TokenCreated = "Token üretildi.";
     }
 }

@@ -11,9 +11,9 @@ namespace Business.Abstract
 {
     public interface IIndividualCustomerService
     {
-        IResult AddIndividualCustomer(User user, IndividualCustomer customer);
+        IDataResult<IndividualCustomer> AddIndividualCustomer(IndividualCustomer customer);
 
-        IResult DeleteIndividualCustomer(User user, IndividualCustomer customer);
+        IResult DeleteIndividualCustomer(IndividualCustomer customer);
         IDataResult<List<IndividualCustomerWithUserInfoDto>> GetAllIndividualCustomer();
     }
 }

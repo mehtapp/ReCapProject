@@ -1,5 +1,7 @@
 ﻿using Core.Utilities.Results;
+using Core.Utilities.Security.JWT;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,11 @@ namespace Business.Abstract
 {
     public interface IAuthService
     {
-        IDataResult<User> register();
-        IDataResult<User> login(User user);
-        IResult userExist();
+        IDataResult<IndividualCustomerWithUserInfoDto> Register(UserRegisterForIndividualCustomerDto userRegisterForIndividualCustomer);
+        IDataResult<User> Login(User user);
+        IResult UserExist(string email);
 
-        //IDataResult<AccessToken> CreateAccessToken(User user);
+        IDataResult<AccessToken> CreateAccessToken(User user);
         
     }
 }

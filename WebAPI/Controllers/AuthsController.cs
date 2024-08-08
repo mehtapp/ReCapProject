@@ -1,4 +1,9 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
+using Core.Utilities.Security.JWT;
+using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,34 +14,43 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AuthsController : ControllerBase
     {
-        private IAuthService authService;
+        private IAuthService _authService;
 
         public AuthsController(IAuthService authService)
         {
-            this.authService = authService;
+            _authService = authService;
         }
 
         [HttpPost("register")]
-        public IActionResult register()
+        public IActionResult Register(UserRegisterForIndividualCustomerDto userRegisterForIndividualCustomer)
         {
-            return Ok();
+            var userExist = _authService.UserExist(userRegisterForIndividualCustomer.Email);
+            if (userExist.Success)
+            {
+                return BadRequest(userExist.Message);
+            }
+            var result = _authService.Register(userRegisterForIndividualCustomer);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            //Token üret
+            var tokenResult = _authService.CreateAccessToken(new User
+            {
+                UserId = result.Data.UserId,
+                Email = result.Data.Email,
+                UserName = result.Data.UserName
+            });
+
+            return Ok(tokenResult);
         }
 
         [HttpGet("login")]
-        public IActionResult login()
+        public IActionResult Login()
         {
-            return Ok();
-        }
-
-        [HttpGet("createToken")]
-        public IActionResult createToken()
-        {
-            return BadRequest();
-        }
-
-        [HttpGet("userExist")]
-        public IActionResult userExist()
-        {
+            //Böyle bir kullanıcı var mı
+            //Vrsa tokın üret
             return Ok();
         }
     }

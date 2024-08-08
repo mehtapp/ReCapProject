@@ -12,11 +12,12 @@ namespace DataAccess.Abstract
 {
     public interface IIndividualCustomerDal : IEntityRepository<IndividualCustomer>
     {
-        void AddIndividualCustomer(User user, IndividualCustomer customer);
+        //void AddIndividualCustomer(User user, IndividualCustomer customer);
+        IndividualCustomer AddIndividualCustomer(IndividualCustomer individualCustomer);
 
-        void DeleteIndividualCustomer(User user, IndividualCustomer customer);
+        //void DeleteIndividualCustomer(User user, IndividualCustomer customer);
 
-        void UpdateIndividualCustomer(User user , IndividualCustomer customer);
+        //void UpdateIndividualCustomer(User user , IndividualCustomer customer);
         List<IndividualCustomerWithUserInfoDto> GetAllIndividualCustomer();
     }
 

@@ -20,10 +20,11 @@ namespace Business.Concrete
         IIndividualCustomerService _individualCustomerService;
         ITokenHelper _tokenHelper;
 
-        public AuthManager(IUserService userService, IIndividualCustomerService individualCustomerService)
+        public AuthManager(IUserService userService, IIndividualCustomerService individualCustomerService, ITokenHelper tokenHelper)
         {
             _userService = userService;
             _individualCustomerService = individualCustomerService;
+            _tokenHelper = tokenHelper;
         }
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
@@ -33,10 +34,22 @@ namespace Business.Concrete
             return new SuccessDataResult<AccessToken>(token, Messages.TokenCreated);
         }
 
-        public IDataResult<User> Login(User user)
+        public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            throw new NotImplementedException();
+            var userToCheck = _userService.GetByMail(userForLoginDto.Email);
+            if (!userToCheck.Success)
+            {
+                return new ErrorDataResult<User>(Messages.UserNotExist);
+            }
+            byte[] passwordHash;
+            var verifyPassword = HashingHelper.VerifyPasswordHash(userForLoginDto.Password,  userToCheck.Data.PasswordHash , userToCheck.Data.PasswordSalt );
+            if (!verifyPassword)
+            {
+                return new ErrorDataResult<User>(Messages.PasswordError);
+            }
+            return new SuccessDataResult<User>(userToCheck.Data , Messages.SuccesfulLogin);
         }
+
 
 
         //tranasaction aspect'i şart

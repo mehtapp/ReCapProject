@@ -47,11 +47,20 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("login")]
-        public IActionResult Login()
+        public IActionResult Login(UserForLoginDto userForLoginDto)
         {
-            //Böyle bir kullanıcı var mı
-            //Vrsa tokın üret
-            return Ok();
+
+            var userToLogin = _authService.Login(userForLoginDto);
+            if (!userToLogin.Success)
+            {
+                return BadRequest(userToLogin);
+            }
+            var token = _authService.CreateAccessToken(userToLogin.Data);
+            if (!token.Success)
+            {
+                return BadRequest(token);
+            }
+            return Ok(token);
         }
     }
 }

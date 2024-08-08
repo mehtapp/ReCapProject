@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,13 @@ namespace Business.Constants
         public static string DeliverCarBack = "Araç teslim alındı. Tekrar kiralama yapılabilir durumda";
         public static string CantRentThisCar = "Bu araç zaten kiralık durumdadır. Teslim edilmeden kiralama işlemi yapılamaz.";
         public static string GetDataById = "Verilen Id ye ait dataya başarıyla ulaşıldı.";
-        internal static string CarImageLimitError ="Bir araç için maximum 5 görsel eklenebilir.";
-        internal static string DefaultImage;
-        internal static string RegisterSuccessForIndividualCustomer;
-        internal static string UserAlreadyExist = "Böyle bir kullanıcı zaten var.";
-        internal static string UserNotExist ="Böyle bir kullanıcı yok";
+        public static string CarImageLimitError ="Bir araç için maximum 5 görsel eklenebilir.";
+        public static string DefaultImage;
+        public static string RegisterSuccessForIndividualCustomer;
+        public static string UserAlreadyExist = "Böyle bir kullanıcı zaten var.";
+        public static string UserNotExist ="Böyle bir kullanıcı yok";
         public static string TokenCreated = "Token üretildi.";
+        internal static User PasswordError;
+        internal static string SuccesfulLogin;
     }
 }

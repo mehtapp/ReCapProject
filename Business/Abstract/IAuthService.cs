@@ -13,7 +13,7 @@ namespace Business.Abstract
     public interface IAuthService
     {
         IDataResult<IndividualCustomerWithUserInfoDto> Register(UserRegisterForIndividualCustomerDto userRegisterForIndividualCustomer);
-        IDataResult<User> Login(User user);
+        IDataResult<User> Login(UserForLoginDto userForLoginDto);
         IResult UserExist(string email);
 
         IDataResult<AccessToken> CreateAccessToken(User user);

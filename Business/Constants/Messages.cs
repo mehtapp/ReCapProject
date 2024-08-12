@@ -31,5 +31,6 @@ namespace Business.Constants
         public static string TokenCreated = "Token üretildi.";
         internal static User PasswordError;
         internal static string SuccesfulLogin;
+        internal static string? AuthorizedDenied;
     }
 }

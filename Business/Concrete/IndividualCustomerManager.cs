@@ -24,8 +24,8 @@ namespace Business.Concrete
         }
 
 
-        //[ValidationAspect(typeof(UserValidator))]
-        //[ValidationAspect(typeof(IndividualCustomerValidator))]
+       
+        [ValidationAspect(typeof(IndividualCustomerValidator))]
         public IDataResult<IndividualCustomer> AddIndividualCustomer(IndividualCustomer customer)
         {
             return new SuccessDataResult<IndividualCustomer>(_individualDal.AddIndividualCustomer(customer),Messages.Added);

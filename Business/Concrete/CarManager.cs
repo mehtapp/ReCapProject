@@ -24,6 +24,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarValidator))]
+        
         public IResult AddCar(Car car)
         {
             if (car.Description.Length >= 2 && car.DailyPrice > 0)

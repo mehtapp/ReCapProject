@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
@@ -26,7 +29,9 @@ namespace Business.Concrete
             _colourDal = colourDal;
         }
 
+        [CacheRemoveAspect("IColourService.Get")]
         [ValidationAspect(typeof(ColourValidator))]
+        [CacheAspect]
         public IResult AddColour(Colour colour)
         {
            // ValidationTool.Validate(new ColourValidator() , colour);
@@ -38,6 +43,9 @@ namespace Business.Concrete
             //throw new ValidationException();
         }
 
+        //[SecuredOperation("admin")]
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<List<Colour>> GetColors()
         {
             int countOfColours = _colourDal.GetAll().Count();
@@ -49,6 +57,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Colour>>(_colourDal.GetAll(), Messages.Listed);
         }
 
+        [PerformanceAspect(5)]
         public IDataResult<Colour> GetColourById(int id)
         {
             var result = _colourDal.Get(c => c.Id == id);
@@ -59,6 +68,7 @@ namespace Business.Concrete
             return new ErrorDataResult<Colour>(Messages.NoData);
         }
 
+        [CacheRemoveAspect("IColourService.Get")]
         public IResult DeleteColour(Colour colour)
         {
             _colourDal.Delete(colour);
@@ -72,6 +82,7 @@ namespace Business.Concrete
 
         }
 
+        [CacheRemoveAspect("IColourService.Get")]
         [ValidationAspect(typeof(ColourValidator))]
         public IResult UpdateColour(Colour colour)
         {
